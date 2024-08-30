@@ -1,35 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Guitar from "./components/Guitar";
 import { db } from "./data/db";
 
 function App() {
-   const [data, setData] = useState(db);
-   const [cart, setCart] = useState([]);
+   const initialCart = () => {
+      const localStorageCart = localStorage.getItem("cart");
+      return localStorageCart ? JSON.parse(localStorageCart) : [];
+   };
+   const [data] = useState(db);
+   const [cart, setCart] = useState(initialCart);
+   const MAX_ITEMS = 5;
+   const MIN_ITEMS = 1;
 
-   // useEffect(() => {
-   //    setData(db);
-   // }, []);
+   // * Con el Hook 'useEffect' cada vez que el carrito cambie ejecuta la acción de guardar la info en el Local Storage
+   useEffect(() => {
+      localStorage.setItem("cart", JSON.stringify(cart));
+   }, [cart]);
 
-   // * Versión función clásica
-   // function addToCart(item) {
-   //    const itemExists = cart.findIndex((guitar) => guitar.id === item.id);
-
-   //    if (itemExists >= 0) {
-   //       const updatedCart = [...cart];
-   //       updatedCart[itemExists].quantity++;
-   //       setCart(updatedCart);
-   //    } else {
-   //       item.quantity = 1;
-   //       setCart([...cart, item]);
-   //    }
-   // }
-
-   // * Versión Arrow Function
    const addToCart = (item) => {
       const itemExists = cart.findIndex((guitar) => guitar.id === item.id);
-
       if (itemExists >= 0) {
+         if (cart[itemExists].quantity >= MAX_ITEMS) return;
          const updatedCart = [...cart];
          updatedCart[itemExists].quantity++;
          setCart(updatedCart);
@@ -39,9 +31,49 @@ function App() {
       }
    };
 
+   const removeFromCart = (id) => {
+      setCart((prevCart) => prevCart.filter((guitar) => guitar.id !== id));
+   };
+
+   const decreaseQuantity = (id) => {
+      const updatedCart = cart.map((item) => {
+         if (item.id === id && item.quantity > MIN_ITEMS) {
+            return {
+               ...item,
+               quantity: item.quantity - 1,
+            };
+         }
+         return item;
+      });
+      setCart(updatedCart);
+   };
+
+   const increaseQuantity = (id) => {
+      const updatedCart = cart.map((item) => {
+         if (item.id === id && item.quantity < MAX_ITEMS) {
+            return {
+               ...item,
+               quantity: item.quantity + 1,
+            };
+         }
+         return item;
+      });
+      setCart(updatedCart);
+   };
+
+   const clearCart = () => {
+      setCart([]);
+   };
+
    return (
       <>
-         <Header cart={cart} />
+         <Header
+            cart={cart}
+            removeFromCart={removeFromCart}
+            increaseQuantity={increaseQuantity}
+            decreaseQuantity={decreaseQuantity}
+            clearCart={clearCart}
+         />
          <main className="container-xl mt-5">
             <h2 className="text-center">Nuestra Colección</h2>
             <div className="row mt-5">
