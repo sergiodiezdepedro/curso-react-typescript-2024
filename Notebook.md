@@ -114,3 +114,49 @@ export default Counter;
 - Si tienes **lógica de estado compleja** que involucra múltiples subvalores o transiciones de estado.
 - Si necesitas manejar **acciones múltiples** que actualizan el estado de diferentes maneras.
 - Si prefieres una forma más estructurada y explícita de gestionar el estado en tu aplicación, similar a Redux.
+
+### Context API
+
+La **Context API** es una característica de **React** que permite compartir datos entre componentes sin necesidad de pasar props manualmente en cada nivel del árbol de componentes. Es útil para gestionar datos globales en aplicaciones de React, como el estado de usuario autenticado, temas (dark/light mode), configuraciones de idioma, entre otros.
+
+**Conceptos clave de la Context API**:
+
+1. **Creación del Contexto**: Utilizas `React.createContext()` para crear un contexto. Esto genera dos componentes importantes:
+   - **Provider**: Componente que envuelve una parte de la aplicación y proporciona los valores que quieres compartir.
+   - **Consumer**: Componente que consume los valores del contexto.
+2. **Provider**: El componente `<Context.Provider>` proporciona el valor del contexto a todos los componentes hijos que lo consumen. Los datos se establecen en la propiedad `value`.
+
+```jsx
+const MiContexto = React.createContext();
+
+function App() {
+  return (
+    <MiContexto.Provider value={{ tema: "oscuro" }}>
+      <ComponenteHijo />
+    </MiContexto.Provider>
+  );
+}
+```
+
+3. **Consumer**: Los componentes hijos que necesitan acceder a los datos usan `<Context.Consumer>`, o de forma más común, el hook `useContext` en componentes funcionales.
+
+```jsx
+function ComponenteHijo() {
+  const contexto = React.useContext(MiContexto);
+  return <div>El tema actual es {contexto.tema}</div>;
+}
+```
+
+**Ventajas**:
+
+- Evita la **prop drilling**, que ocurre cuando tienes que pasar props a través de múltiples niveles de componentes que no los necesitan directamente.
+- Facilita la gestión de estados globales y datos compartidos.
+
+**Casos de uso**:
+
+- Autenticación de usuario.
+- Selección de tema (modo claro/oscuro).
+- Datos de configuración o de aplicación que se requieren en varios componentes.
+
+La Context API es una solución más simple comparada con Redux cuando la aplicación no requiere una gestión compleja del estado global.
+
