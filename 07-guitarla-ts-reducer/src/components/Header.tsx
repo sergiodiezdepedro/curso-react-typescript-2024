@@ -1,22 +1,13 @@
 import { useMemo, Dispatch } from "react";
-import type { CartItem, Guitar } from "../types";
+import type { CartItem } from "../types";
 import { CartActions } from "../reducers/cart-reducer";
 
 type HeaderProps = {
    cart: CartItem[];
    dispatch: Dispatch<CartActions>;
-   increaseQuantity: (id: Guitar["id"]) => void;
-   decreaseQuantity: (id: Guitar["id"]) => void;
-   clearCart: () => void;
 };
 
-function Header({
-   cart,
-   dispatch,
-   increaseQuantity,
-   decreaseQuantity,
-   clearCart,
-}: HeaderProps) {
+function Header({ cart, dispatch }: HeaderProps) {
    const isEmpty = useMemo(() => cart.length === 0, [cart]);
    const cartTotal = useMemo(
       () =>
@@ -84,9 +75,12 @@ function Header({
                                                    type="button"
                                                    className="btn btn-dark"
                                                    onClick={() =>
-                                                      decreaseQuantity(
-                                                         guitar.id
-                                                      )
+                                                      dispatch({
+                                                         type: "decrease.quantity",
+                                                         payload: {
+                                                            id: guitar.id,
+                                                         },
+                                                      })
                                                    }
                                                 >
                                                    -
@@ -96,9 +90,12 @@ function Header({
                                                    type="button"
                                                    className="btn btn-dark"
                                                    onClick={() =>
-                                                      increaseQuantity(
-                                                         guitar.id
-                                                      )
+                                                      dispatch({
+                                                         type: "increase.quantity",
+                                                         payload: {
+                                                            id: guitar.id,
+                                                         },
+                                                      })
                                                    }
                                                 >
                                                    +
@@ -134,7 +131,9 @@ function Header({
                            )}
                            <button
                               className="btn btn-dark w-100 mt-3 p-2"
-                              onClick={clearCart}
+                              onClick={() =>
+                                 dispatch({ type: "clear-cart" })
+                              }
                            >
                               Vaciar Carrito
                            </button>
