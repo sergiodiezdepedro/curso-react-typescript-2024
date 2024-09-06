@@ -1,0 +1,6 @@
+@media (max-width: 576px) {
+   .react-date-picker__calendar,
+   .react-calendar {
+      width: 300px;
+   }
+}
