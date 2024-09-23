@@ -1,18 +1,85 @@
+import { ChangeEvent, useEffect, useState } from "react";
+import type { DraftExpense, Value } from "../types";
 import { categories } from "../data/categories";
 import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
+import { useBudget } from "../hooks/useBudget";
+import ErrorMessage from "./ErrorMessage";
 import "react-calendar/dist/Calendar.css";
 import "./ExpenseForm.css";
 
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
-
 export default function ExpenseForm() {
+   const [expense, setExpense] = useState<DraftExpense>({
+      amount: 0,
+      expenseName: "",
+      category: "",
+      date: new Date(),
+   });
+
+   const [error, setError] = useState("");
+
+   const { dispatch, state } = useBudget();
+
+   useEffect(() => {
+      if (state.editingId) {
+         const editingExpense = state.expenses.filter(
+            (currentExpense) => currentExpense.id === state.editingId
+         )[0];
+         setExpense(editingExpense);
+      }
+   }, [state.editingId]);
+
+   const handleChangeDate = (value: Value) => {
+      setExpense({
+         ...expense,
+         date: value,
+      });
+   };
+
+   const handleChange = (
+      e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
+   ) => {
+      const { name, value } = e.target;
+      const isAmountField = ["amount"].includes(name);
+      setExpense({
+         ...expense,
+         [name]: isAmountField ? Number(value) : value,
+      });
+   };
+
+   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      // * Validar
+      if (Object.values(expense).includes("")) {
+         setError("Todos los campos son obligatorios");
+         return;
+      }
+
+      // * Agregar o actualizar el gasto
+      if (state.editingId) {
+         dispatch({
+            type: "update-expense",
+            payload: { expense: { id: state.editingId, ...expense } },
+         });
+      } else {
+         dispatch({ type: "add-expense", payload: { expense } });
+      }
+
+      // * Reiniciar el state
+      setExpense({
+         amount: 0,
+         expenseName: "",
+         category: "",
+         date: new Date(),
+      });
+   };
    return (
-      <form className="space-y-5 ">
+      <form className="space-y-5" onSubmit={handleSubmit}>
          <legend className="uppercase text-center text-2xl font-black border-b-4 border-blue-500 py-2">
             Nuevo Gasto
          </legend>
+         {error && <ErrorMessage>{error}</ErrorMessage>}
          <div className="flex flex-col gap-2 ">
             <label htmlFor="expenseName" className="text-xl">
                Nombre Gasto
@@ -23,6 +90,8 @@ export default function ExpenseForm() {
                name="expenseName"
                placeholder="Añade el nombre del gasto"
                className="bg-slate-100 p-2"
+               value={expense.expenseName}
+               onChange={handleChange}
             />
          </div>
          <div className="flex flex-col gap-2 ">
@@ -35,6 +104,8 @@ export default function ExpenseForm() {
                name="amount"
                placeholder="Añade la cantidad del gasto"
                className="bg-slate-100 p-2"
+               value={expense.amount}
+               onChange={handleChange}
             />
          </div>
          <div className="flex flex-col gap-2 ">
@@ -45,6 +116,8 @@ export default function ExpenseForm() {
                name="category"
                id="category"
                className="bg-slate-100 p-2"
+               value={expense.category}
+               onChange={handleChange}
             >
                <option value="">-- Seleccione --</option>
                {categories.map((category) => (
@@ -58,7 +131,11 @@ export default function ExpenseForm() {
             <label htmlFor="date" className="text-xl">
                Fecha Gasto
             </label>
-            <DatePicker className="bg-sale-100 p-2 border-0" />
+            <DatePicker
+               className="bg-sale-100 p-2 border-0"
+               value={expense.date}
+               onChange={handleChangeDate}
+            />
             {/* <input
                type="date"
                id="date"
