@@ -2,9 +2,9 @@ import { ChangeEvent, useEffect, useState } from "react";
 import type { DraftExpense, Value } from "../types";
 import { categories } from "../data/categories";
 import DatePicker from "react-date-picker";
-import "react-date-picker/dist/DatePicker.css";
 import { useBudget } from "../hooks/useBudget";
 import ErrorMessage from "./ErrorMessage";
+import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "./ExpenseForm.css";
 
@@ -18,7 +18,9 @@ export default function ExpenseForm() {
 
    const [error, setError] = useState("");
 
-   const { dispatch, state } = useBudget();
+   const [previousAmount, setPreviousAmount] = useState(0);
+
+   const { dispatch, state, remainingBudget } = useBudget();
 
    useEffect(() => {
       if (state.editingId) {
@@ -26,6 +28,7 @@ export default function ExpenseForm() {
             (currentExpense) => currentExpense.id === state.editingId
          )[0];
          setExpense(editingExpense);
+         setPreviousAmount(editingExpense.amount);
       }
    }, [state.editingId]);
 
@@ -56,6 +59,12 @@ export default function ExpenseForm() {
          return;
       }
 
+      //* Validar que no se excede el límite del presupuesto
+      if (expense.amount - previousAmount > remainingBudget) {
+         setError("Presupuesto sobrepasado");
+         return;
+      }
+
       // * Agregar o actualizar el gasto
       if (state.editingId) {
          dispatch({
@@ -73,16 +82,18 @@ export default function ExpenseForm() {
          category: "",
          date: new Date(),
       });
+
+      setPreviousAmount(0);
    };
    return (
       <form className="space-y-5" onSubmit={handleSubmit}>
          <legend className="uppercase text-center text-2xl font-black border-b-4 border-blue-500 py-2">
-            Nuevo Gasto
+            {state.editingId ? "Guardar cambios" : "Nuevo gasto"}
          </legend>
          {error && <ErrorMessage>{error}</ErrorMessage>}
          <div className="flex flex-col gap-2 ">
             <label htmlFor="expenseName" className="text-xl">
-               Nombre Gasto
+               {state.editingId ? "Guardar cambios" : "Nuevo gasto"}
             </label>
             <input
                type="text"
@@ -146,7 +157,7 @@ export default function ExpenseForm() {
          </div>
          <input
             type="submit"
-            value={"Registrar Gasto"}
+            value={state.editingId ? "Guardar cambios" : "Registrar gasto"}
             className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
          />
       </form>
