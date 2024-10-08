@@ -1,0 +1,168 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "UpTask - MERN",
+    "collectionId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+    "dateExported": "2024-10-08T18:37:58.587Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "ff6e0d50-7c16-454b-b798-0c675f60e134",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "PROJECT - Create Project",
+            "url": "http://localhost:4000/api/projects/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-10-07T09:49:02.870Z",
+            "modified": "2024-10-08T07:14:50.952Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"projectName\": \"Carrito Compra\",\n  \"clientName\": \"Alburquerque\",\n  \"description\": \"Wordpress y WooCommerce\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "394ee97a-2cdb-4230-8964-1f5ab2304a28",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "PROJECT - Get All Projects",
+            "url": "http://localhost:4000/api/projects/",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-10-07T09:40:22.076Z",
+            "modified": "2024-10-07T10:52:13.388Z",
+            "headers": []
+        },
+        {
+            "_id": "8ee73f68-8330-4575-8d46-28728a445af8",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "PROJECT - Get Project By ID",
+            "url": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-10-07T10:51:59.321Z",
+            "modified": "2024-10-08T07:34:25.034Z",
+            "headers": []
+        },
+        {
+            "_id": "11c4da43-b782-44f2-8e38-1ea87044c879",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "PROJECT - Update Project",
+            "url": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-10-07T12:37:38.538Z",
+            "modified": "2024-10-08T13:00:06.354Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"projectName\": \"Bloodborne\",\n  \"clientName\": \"CMON\",\n  \"description\": \"Expansión chula\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f7c518ee-fa80-4a89-87a9-dc975d88e854",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "PROJECT - Delete Project",
+            "url": "http://localhost:4000/api/projects/6703ba2df97bc090676fda6f",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2024-10-07T12:58:11.707Z",
+            "modified": "2024-10-07T13:09:57.237Z",
+            "headers": []
+        },
+        {
+            "_id": "9b3f5b9b-ba17-46c6-8d3b-4ef4a2854796",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "TASK - Create Task",
+            "url": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-10-07T14:05:34.554Z",
+            "modified": "2024-10-08T10:58:53.955Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Home\",\n  \"description\": \"Diseñar UI de la Home\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "6613d728-0a75-4d9b-aa47-2e91249b4ee2",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "TASK - Get Task",
+            "url": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-10-08T07:12:06.608Z",
+            "modified": "2024-10-08T07:30:55.715Z",
+            "headers": []
+        },
+        {
+            "_id": "23110b62-7db2-4927-a20a-1fee375bf821",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "TASK - Get Task By ID",
+            "url": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks/670515bb9d5de365ea6b4054",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2024-10-08T07:49:48.571Z",
+            "modified": "2024-10-08T11:23:40.728Z",
+            "headers": []
+        },
+        {
+            "_id": "6aec16d1-a9a0-483d-a5a9-23561ddbcbe6",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "TASK - Update Task By ID",
+            "url": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks/670515bb9d5de365ea6b4054",
+            "method": "PUT",
+            "sortNum": 130000,
+            "created": "2024-10-08T08:18:15.137Z",
+            "modified": "2024-10-08T11:26:39.627Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"ACTUALIZAR!!!\",\n  \"description\": \"REDISEÑO DE LA HOMEeeeeee\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "0cb804fb-ec39-4f24-b387-02f50af7d1b7",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "TASK - Delete Task",
+            "url": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks/670515bb9d5de365ea6b4054",
+            "method": "DELETE",
+            "sortNum": 140000,
+            "created": "2024-10-08T09:15:53.200Z",
+            "modified": "2024-10-08T11:30:30.381Z",
+            "headers": []
+        },
+        {
+            "_id": "fe8e63fe-40c0-4068-9122-547a5ea895c5",
+            "colId": "a0bec379-6b71-46dc-a9b2-cde628817c31",
+            "containerId": "",
+            "name": "TASK - Update Status",
+            "url": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks/670515bb9d5de365ea6b4054/status",
+            "method": "POST",
+            "sortNum": 150000,
+            "created": "2024-10-08T10:21:05.193Z",
+            "modified": "2024-10-08T11:29:07.664Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"status\": \"completed\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "AOaYQ4kdIasdEs4bS8NwWZ3fLQQXAn_giyPtZBhc8s3KsYKMp5VWxHVdC6b00MZiMvLWvRtynSjGI-YUOfNlUQ"
+}
