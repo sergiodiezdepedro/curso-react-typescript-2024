@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "cc3f4391-c663-43f3-8495-3a4f212b28a8",
+		"name": "UpTask - MERN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2172997"
+	},
+	"item": [
+		{
+			"name": "PROJECT",
+			"item": [
+				{
+					"name": "PROJECT - Create Project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"projectName\": \"Carrito Compra\",\n    \"clientName\": \"Alburquerque\",\n    \"description\": \"Wordpress y WooCommerce\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/projects/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECT - Get All Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/projects/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECT - Get Project By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								"6704d443d8aa360134dcd2d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECT - Update Project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"projectName\": \"Bloodborne\",\n    \"clientName\": \"CMON\",\n    \"description\": \"Expansión chula\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								"6704d443d8aa360134dcd2de"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PROJECT - Delete Project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/projects/6703ba2df97bc090676fda6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								"6703ba2df97bc090676fda6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TASK",
+			"item": [
+				{
+					"name": "TASK - Create Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Home\",\n    \"description\":\"Diseñar Ui de la Home\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								"6704d443d8aa360134dcd2de",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TASK - Get Task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								"6704d443d8aa360134dcd2de",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TASK - Get Task By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks/670515bb9d5de365ea6b4054",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								"6704d443d8aa360134dcd2de",
+								"tasks",
+								"670515bb9d5de365ea6b4054"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TASK - Update Task By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Cambio!!!!\",\n    \"description\":\"Diseñar Cambio!!!!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks/670515bb9d5de365ea6b4054",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								"6704d443d8aa360134dcd2de",
+								"tasks",
+								"670515bb9d5de365ea6b4054"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TASK - Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks/670515bb9d5de365ea6b4054",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								"6704d443d8aa360134dcd2de",
+								"tasks",
+								"670515bb9d5de365ea6b4054"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TASK - Update Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\":\"completed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/projects/6704d443d8aa360134dcd2de/tasks/670515bb9d5de365ea6b4054/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"projects",
+								"6704d443d8aa360134dcd2de",
+								"tasks",
+								"670515bb9d5de365ea6b4054",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
