@@ -6,8 +6,9 @@
 -  react-hook-form
 -  zod
 -  axios
--  React Query, o también conocida TanStack Query, es una librería para obtener datos del servidor. npm i @tanstack/react-query
+-  React Query, o también conocida TanStack Query, es una librería para obtener datos del servidor. `npm i @tanstack/react-query`
 -  tailwindcss
+-  tailwindcss/forms. `npm i @tailwindcss/forms`
 -  @headlessui/react
 -  @heroicons/react
 -  react-toastify
