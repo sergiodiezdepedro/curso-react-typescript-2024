@@ -48,9 +48,25 @@ Noficaciones.
 npm i react-toastify
 ```
 
+### [SWR](https://swr.vercel.app/)
+
+[¿Qué es y pará qué sirve](https://chatgpt.com/share/671603b8-8620-8003-831b-ec25a7bc1df6).
+
 ## [Cloudinay](https://cloudinary.com/)
 
 Un servicio en la nube para subir imágenes.
+
+## Despliegue
+
+El panel de administración está en la ruta `/admin/products`.
+
+Las últimas órdenes están en la ruta `/orders`.
+
+El despliegue en [Vercel](https://vercel.com/) fue correcto. La App es operativa.
+
+**IMPORTANTE: LA APP DEJARÁ DE FUNCIONAR EN UN MES PORQUE CADUCA LA BASE DE DATOS EN RENDER.**
+
+---
 
 ## Next.js
 
